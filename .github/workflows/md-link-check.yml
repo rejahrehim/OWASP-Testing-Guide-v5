@@ -46,11 +46,9 @@ jobs:
         links="${links//'%'/'%25'}"
         links="${links//$'\n'/'%0A'}"
         links="${links//$'\r'/'%0D'}"
-        echo ::set-output name=links::**Following links are broken:** %0A$links
-    - name: Send comment to PR with broken links
-      if: failure() && github.event_name == 'pull_request'
-      uses: mshick/add-pr-comment@v1
+        echo **Following links are broken:** %0A$links > brokenlinks.txt
+    - name: Upload list of broken links
+      uses: actions/upload-artifact@v1
       with:
-        message: ${{ steps.brokenlinks.outputs.links }}
-        repo-token: ${{ secrets.comment }}
-        allow-repeats: true
+        name: broken-links
+        path: brokenlinks.txt
