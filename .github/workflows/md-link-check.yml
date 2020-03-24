@@ -43,10 +43,7 @@ jobs:
         rm -f err log
         cat brokenlinks
         links=`cat brokenlinks`
-        links="${links//'%'/'%25'}"
-        links="${links//$'\n'/'%0A'}"
-        links="${links//$'\r'/'%0D'}"
-        echo **Following links are broken:** %0A$links > brokenlinks.txt
+        echo Following links are broken: \n $links > brokenlinks.txt
     - name: Upload list of broken links
       if: failure() && github.event_name == 'pull_request'
       uses: actions/upload-artifact@v1
