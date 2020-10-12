@@ -25,7 +25,7 @@ jobs:
     - name: Git Clone and Global Config
       run: |
         # Git setup
-        export GITHUB_USER=wstgbot
+        export GITHUB_USER=rejahrehim
         echo "GITHUB_USER=$GITHUB_USER" >> $GITHUB_ENV
         echo "GITHUB_TOKEN=${{ secrets.wstg_deploy_token }}" >> $GITHUB_ENV
         git config --global user.email "62450690+wstgbot@users.noreply.github.com"
