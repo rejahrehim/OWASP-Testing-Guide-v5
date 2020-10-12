@@ -35,14 +35,14 @@ jobs:
     - name: Setup Environment Variables
       run : |
         # Setup some env vars etc for future use
-        cd wstg
-        echo "WSTG_BASE=$(pwd)" >> $GITHUB_ENV
+        # cd wstg
+        # echo "WSTG_BASE=$(pwd)" >> $GITHUB_ENV
         echo "SRC_BASE="OWASP/wstg@"$(git log -1 --format=format:%h)" >> $GITHUB_ENV
         echo "BRANCH_STAMP=$(date +"%Y%m%d%H%M%S")" >> $GITHUB_ENV
         echo "SHORT_DATE=$(date +"%Y-%m-%d")" >> $GITHUB_ENV
     - name: Create Feature Branch
       run: |
-        cd $WSTG_BASE
+        # cd $WSTG_BASE
         # Checkout what will be the new feature branch
         git checkout -b $BRANCH_STAMP
     - name: Run Json Build
@@ -50,7 +50,7 @@ jobs:
 
     - name: Push Feature Branch and Raise PR
       run: |
-        cd $WSTG_BASE
+        # cd $WSTG_BASE
         git remote set-url origin https://$GITHUB_USER:${{ secrets.wstg_deploy_token }}@github.com/$GITHUB_USER/wstg.git
         git add checklist/Testing-checklist.json
         git commit -m "Publish Latest Json checklist $SHORT_DATE" -m "Updates based on $SRC_BASE"
